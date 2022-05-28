@@ -1,0 +1,30 @@
+{
+  "bsonType": "object",
+  "required": [],
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "name": {
+      "bsonType": "string",
+      "label": "名称"
+    },
+    "name2": {
+      "bsonType": "string",
+      "label": "名称2"
+    },
+    "name3": {
+      "bsonType": "string",
+      "label": "名字3"
+    },
+    "alert_name": {
+      "bsonType": "string",
+      "label": "展示配置",
+      "description": ""
+    },
+    "status": {
+      "bsonType": "int",
+      "label": "数据状态"
+    }
+  }
+}

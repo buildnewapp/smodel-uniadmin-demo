@@ -1,0 +1,118 @@
+{
+  "bsonType": "object",
+  "required": [],
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "string": {
+      "bsonType": "string",
+      "label": "字符字段",
+      "description": "string演示"
+    },
+    "text": {
+      "bsonType": "string",
+      "label": "文本框"
+    },
+    "select": {
+      "bsonType": "int",
+      "label": "下拉单选"
+    },
+    "radio": {
+      "bsonType": "int",
+      "label": "单选"
+    },
+    "checkbox": {
+      "bsonType": "array",
+      "label": "复选框"
+    },
+    "multiselect": {
+      "bsonType": "array",
+      "label": "下拉多选"
+    },
+    "int": {
+      "bsonType": "int",
+      "label": "数字"
+    },
+    "switch": {
+      "bsonType": "bool",
+      "label": "开关"
+    },
+    "rate": {
+      "bsonType": "int",
+      "label": "评分"
+    },
+    "colorpicker": {
+      "bsonType": "string",
+      "label": "颜色选择器"
+    },
+    "timepicker": {
+      "bsonType": "string",
+      "label": "时间选择器"
+    },
+    "datepicker": {
+      "bsonType": "date",
+      "label": "日期选择器"
+    },
+    "datetimepicker": {
+      "bsonType": "timestamp",
+      "label": "日期时间选择器"
+    },
+    "file": {
+      "bsonType": "file",
+      "label": "文件上传"
+    },
+    "files": {
+      "bsonType": "array",
+      "label": "多文件上传"
+    },
+    "image": {
+      "bsonType": "file",
+      "label": "图片上传"
+    },
+    "json": {
+      "bsonType": "object",
+      "label": "JSON对象"
+    },
+    "jsonarray": {
+      "bsonType": "array",
+      "label": "JSON数组"
+    },
+    "images": {
+      "bsonType": "array",
+      "label": "多图片上传"
+    },
+    "selectone": {
+      "bsonType": "string",
+      "label": "下拉外链"
+    },
+    "cascader": {
+      "bsonType": "array",
+      "label": "级联选择器"
+    },
+    "slider": {
+      "bsonType": "int",
+      "label": "滑块"
+    },
+    "sliderrange": {
+      "bsonType": "array",
+      "label": "滑块范围"
+    },
+    "status": {
+      "bsonType": "int",
+      "label": "数据状态"
+    },
+    "name": {
+      "bsonType": "string",
+      "label": "名称"
+    },
+    "editor": {
+      "bsonType": "string",
+      "label": "编辑器"
+    },
+    "chooseone": {
+      "bsonType": "string",
+      "label": "模型选择器"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": ["name", "title", "type"],
+	"permission": {
+		"read": false,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"name": {
+			"bsonType": "string",
+			"description": "模型标识",
+			"label": "模型标识"
+		},
+		"title": {
+			"bsonType": "string",
+			"description": "模型名称",
+			"label": "模型名称"
+		},
+		"collection": {
+			"bsonType": "string",
+			"description": "模型集合",
+			"label": "模型集合"
+		},
+		"type": {
+			"enum": ["db", "unreal"],
+			"label": "模型类型",
+			"description": "模型类型,db实际数据库对应,unreal不生成数据表"
+		},
+		"formType": {
+			"enum": ["base", "tab", "step", "mainsub"],
+			"label": "表单类型",
+			"description": "表单类型,base普通表单,tab分组表单,step分步表单,mainsub主辅表单",
+			"defaultValue": "base"
+		},
+		"formGroups": {
+			"bsonType": "array",
+			"label": "表单分组",
+			"description": "表单分组配置",
+			"defaultValue": [{
+				"name": "基础",
+				"fields": []
+			}],
+			"arrayType": "object",
+			"properties": {
+				"name": {
+					"bsonType": "string",
+					"label": "分组名"
+				},
+				"fields": {
+					"bsonType": "array",
+					"label": "分组字段",
+					"arrayType": "string"
+				}
+			}
+		},
+		"girdData": {
+			"bsonType": "array",
+			"label": "表格配置",
+			"description": "模型表格配置array",
+			"defaultValue": [],
+			"arrayType": "object",
+			"properties": {
+				"type": {
+					"bsonType": "string",
+					"enum": ["field", "action", "fun"],
+					"label": "列类型"
+				},
+				"field": {
+					"bsonType": "string",
+					"label": "列字段"
+				},
+				"fun": {
+					"bsonType": "string",
+					"label": "列函数"
+				},
+				"label": {
+					"bsonType": "string",
+					"label": "列名称"
+				}
+			}
+		},
+		"searchFields": {
+			"bsonType": "array",
+			"label": "普通搜索字段",
+			"description": "普通搜索字段array",
+			"defaultValue": [],
+			"arrayType": "string"
+		},
+		"searchFormFields": {
+			"bsonType": "array",
+			"label": "高级搜索字段",
+			"description": "高级搜索字段array",
+			"defaultValue": [],
+			"arrayType": "string"
+		},
+		"addBtn": {
+			"bsonType": "int",
+			"label": "新增功能",
+			"description": "0关闭,1新页打开,2弹框打开,3抽屉打开",
+			"defaultValue": true
+		},
+		"editBtn": {
+			"bsonType": "int",
+			"label": "编辑功能",
+			"description": "0关闭,1新页打开,2弹框打开,3抽屉打开",
+			"defaultValue": true
+		},
+		"multBtn": {
+			"bsonType": "bool",
+			"label": "批量功能",
+			"description": "批量功能是否显示",
+			"defaultValue": false
+		},
+		"delBtn": {
+			"bsonType": "bool",
+			"label": "删除功能",
+			"description": "删除功能是否显示",
+			"defaultValue": false
+		},
+		"exportBtn": {
+			"bsonType": "bool",
+			"label": "导出功能",
+			"description": "导出功能是否显示",
+			"defaultValue": false
+		},
+		"importBtn": {
+			"bsonType": "bool",
+			"label": "导入功能",
+			"description": "导入功能是否显示",
+			"defaultValue": false
+		},
+		"status": {
+			"bsonType": "int",
+			"enum": [{
+				"text": "正常",
+				"value": 1
+			}, {
+				"text": "删除",
+				"value": -1
+			}],
+			"label": "状态",
+			"defaultValue": 1,
+			"description": "1正常,-1删除"
+		},
+		"create_time": {
+			"bsonType": "timestamp",
+			"label": "创建时间",
+			"defaultValue": {
+				"$env": "now"
+			},
+			"forceDefaultValue": {
+				"$env": "now"
+			}
+		}
+	}
+}

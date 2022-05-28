@@ -1,0 +1,323 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": ["name", "title", "type"],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"name": {
+			"bsonType": "string",
+			"description": "字段标识",
+			"label": "字段标识"
+		},
+		"title": {
+			"bsonType": "string",
+			"description": "字段标题",
+			"label": "字段标题"
+		},
+		"type": {
+			"bsonType": "string",
+			"enum": [{
+				"text": "字符",
+				"value": "string"
+			},{
+				"text": "文本框",
+				"value": "text"
+			}, {
+				"text": "下拉单选",
+				"value": "select"
+			}, {
+				"text": "单选",
+				"value": "radio"
+			}, {
+				"text": "复选框",
+				"value": "checkbox"
+			}, {
+				"text": "下拉外链",
+				"value": "selectone"
+			},{
+				"text": "模型选择器",
+				"value": "chooseone"
+			}, {
+				"text": "下拉多选",
+				"value": "multiselect"
+			}, {
+				"text": "数字",
+				"value": "int"
+			}, {
+				"text": "级联选择器",
+				"value": "cascader"
+			}, {
+				"text": "开关",
+				"value": "switch"
+			}, {
+				"text": "滑块",
+				"value": "slider"
+			}, {
+				"text": "滑块范围",
+				"value": "sliderrange"
+			}, {
+				"text": "评分",
+				"value": "rate"
+			}, {
+				"text": "颜色选择器",
+				"value": "colorpicker"
+			}, {
+				"text": "时间选择器",
+				"value": "timepicker"
+			}, {
+				"text": "日期选择器",
+				"value": "datepicker"
+			}, {
+				"text": "日期时间选择器",
+				"value": "datetimepicker"
+			}, {
+				"text": "文件上传",
+				"value": "file"
+			}, {
+				"text": "多文件上传",
+				"value": "files"
+			}, {
+				"text": "图片上传",
+				"value": "image"
+			}, {
+				"text": "多图片上传",
+				"value": "images"
+			}, {
+				"text": "JSON对象",
+				"value": "json"
+			}, {
+				"text": "JSON数组",
+				"value": "jsonarray"
+			},{
+				"text": "编辑器",
+				"value": "editor"
+			}, {
+				"text": "展示alert",
+				"value": "alert"
+			},{
+				"text": "自定义",
+				"value": "custom"
+			}],
+			"label": "数据类型",
+			"description": "数据类型"
+		},
+		"defaultValue": {
+			"bsonType": "any",
+			"label": "字段默认值",
+			"description": "字段默认值"
+		},
+		"placeholder": {
+			"bsonType": "string",
+			"label": "输入提示",
+			"description": "输入提示"
+		},
+		"remark": {
+			"bsonType": "string",
+			"label": "输入备注",
+			"description": "输入备注"
+		},
+		"extra": {
+			"bsonType": "string",
+			"label": "额外参数",
+			"description": "额外参数,key:value格式,一行一个"
+		},
+		"json": {
+			"bsonType": "object",
+			"label": "JSON对象",
+			"description": "JSON对象"
+		},
+		"jsonarray": {
+			"bsonType": "array",
+			"label": "JSON数组",
+			"description": "JSON数组"
+		},
+		"config": {
+			"bsonType": "object",
+			"label": "字段配置项",
+			"description": "字段配置项,可扩展"
+		},
+		"col": {
+			"bsonType": "int",
+			"minimum": 0,
+			"maximum": 24,
+			"label": "布局值",
+			"description": "布局值0-24"
+		},
+		"smodel_id": {
+			"bsonType": "string",
+			"label": "关联模型",
+			"description": "关联模型"
+		},
+		"is_show": {
+			"bsonType": "int",
+			"defaultValue": 1,
+			"enum": [{
+					"text": "始终显示",
+					"value": 1
+				},
+				{
+					"text": "新增显示",
+					"value": 2
+				},
+				{
+					"text": "编辑显示",
+					"value": 3
+				}, {
+					"text": "不显示",
+					"value": 4
+				}
+			],
+			"label": "是否显示",
+			"description": "是否显示"
+		},
+		"is_readonly": {
+			"bsonType": "int",
+			"defaultValue": 1,
+			"enum": [{
+					"text": "只读关闭",
+					"value": 1
+				},
+				{
+					"text": "新增只读",
+					"value": 2
+				},
+				{
+					"text": "编辑只读",
+					"value": 3
+				}, {
+					"text": "始终只读",
+					"value": 4
+				}
+			],
+			"label": "是否只读",
+			"description": "是否只读"
+		},
+		"is_must": {
+			"bsonType": "int",
+			"enum": [{
+					"text": "不必填",
+					"value": 1
+				},
+				{
+					"text": "新增必填",
+					"value": 2
+				},
+				{
+					"text": "编辑必填",
+					"value": 3
+				}, {
+					"text": "始终必填",
+					"value": 4
+				}
+			],
+			"defaultValue": 1,
+			"label": "是否必填",
+			"description": "是否必填"
+		},
+		"validate_time": {
+			"bsonType": "int",
+			"enum": [{
+					"text": "不验证",
+					"value": 1
+				},
+				{
+					"text": "新增验证",
+					"value": 2
+				},
+				{
+					"text": "编辑验证",
+					"value": 3
+				}, {
+					"text": "始终验证",
+					"value": 4
+				}
+			],
+			"defaultValue": 1,
+			"label": "验证时间",
+			"description": "验证时间"
+		},
+		"validate_type": {
+			"bsonType": "string",
+			"label": "验证类型",
+			"description": "验证类型"
+		},
+		"validate_rule": {
+			"bsonType": "string",
+			"label": "验证规则",
+			"description": "验证规则"
+		},
+		"validate_tips": {
+			"bsonType": "string",
+			"label": "验证错误提示",
+			"description": "验证错误提示"
+		},
+		"auto_time": {
+			"bsonType": "int",
+			"enum": [{
+					"text": "不自动完成",
+					"value": 1
+				},
+				{
+					"text": "新增自动完成",
+					"value": 2
+				},
+				{
+					"text": "编辑自动完成",
+					"value": 3
+				}, {
+					"text": "始终自动完成",
+					"value": 4
+				}
+			],
+			"defaultValue": 1,
+			"label": "自动完成时间",
+			"description": "自动完成时间"
+		},
+		"auto_type": {
+			"bsonType": "string",
+			"label": "自动完成类型",
+			"description": "自动完成类型"
+		},
+		"auto_rule": {
+			"bsonType": "string",
+			"label": "自动完成规则",
+			"description": "自动完成规则"
+		},
+
+		"create_time": {
+			"bsonType": "timestamp",
+			"label": "创建时间",
+			"forceDefaultValue": {
+				"$env": "now"
+			}
+		},
+		"update_time": {
+			"bsonType": "timestamp",
+			"label": "更新时间",
+			"defaultValue": {
+				"$env": "now"
+			}
+		},
+		"status": {
+			"bsonType": "int",
+			"enum": [{
+				"text": "正常",
+				"value": 1
+			}, {
+				"text": "删除",
+				"value": -1
+			}],
+			"label": "数据状态",
+			"defaultValue": 1,
+			"description": "1正常,-1删除"
+		}
+	}
+}
