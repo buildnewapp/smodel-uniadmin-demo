@@ -8,7 +8,7 @@
 			</el-steps>
 			<el-tabs v-model="formTab">
 				<el-tab-pane v-for="(group,gindex) in formGroups" :key="gindex"
-					:label=" smodel.formType == 'tab' ? group.name : ''" :name="gindex+''" class="u-p-50" 
+					:label=" smodel.formType == 'tab' ? group.name : ''" :name="gindex+''" class="u-p-50"
 					:class="smodel.formType+gindex">
 					<SfieldEdit v-if="spage=='sfield'" @sfield_edit_event="sfieldEditEvent"></SfieldEdit>
 					<el-row>
@@ -140,7 +140,9 @@
 		getSmodelInfo
 	} from '../smodel/api/smodel_api.js'
 	import {
-		fetchSpageData,addData,updateData
+		fetchSpageData,
+		addData,
+		updateData
 	} from '../smodel/api/spage_api.js'
 	import {
 		smodel_log
@@ -191,11 +193,19 @@
 		methods: {
 			// 页面数据初始化函数
 			async init(option) {
+				this.reset()
 				if (option.id) this.id = option.id
 				if (option.spage) this.spage = option.spage
 				this.form = Object.assign({}, this.form, option)
 				await this.initSmodelFields()
 				this.initPageData()
+			},
+			reset() {
+				this.form = {}
+				this.id = ''
+				this.spage = ''
+				this.formGroups = []
+				this.fields = []
 			},
 			async initPageData() {
 				if (this.id) {
@@ -260,7 +270,7 @@
 					}
 				}
 				if (id) {
-					updateData(this.spage, this.id ,data).then(res => {
+					updateData(this.spage, this.id, data).then(res => {
 						smodel_log('saveOrUpdate update', res)
 						this.$message.success('修改' + this.smodel.title + '成功')
 					}).catch(err => {
@@ -397,28 +407,35 @@
 					display: none;
 				}
 			}
-			.mainsub-form{
+
+			.mainsub-form {
 				.el-tabs__header {
 					display: none;
 				}
-				.el-tab-pane{
+
+				.el-tab-pane {
 					margin: 10px;
 					border: 1px solid #f1f3f4;
 					display: inline-block !important;
 				}
-				.el-tab-pane:nth-child(1){
+
+				.el-tab-pane:nth-child(1) {
 					width: 65%;
 				}
-				.el-tab-pane:nth-child(2){
+
+				.el-tab-pane:nth-child(2) {
 					width: 35%;
 				}
-				.el-form-item__content{
-					margin-right:0;
+
+				.el-form-item__content {
+					margin-right: 0;
 				}
-				.el-tabs__content{
+
+				.el-tabs__content {
 					display: flex;
 				}
-				.el-input{
+
+				.el-input {
 					width: 100%;
 				}
 			}

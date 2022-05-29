@@ -18,7 +18,7 @@
 			</el-button>
 		</div>
 
-		<el-dialog :title="title" :visible.sync="dialogVisible" width="1140px">
+		<el-dialog :title="title" :visible.sync="dialogVisible" append-to-body width="1140px">
 			<view class="u-flex u-col-top" v-loading="loading">
 				<view>
 					<el-menu default-active="0" class="u-w-400" @select="handleSelect">

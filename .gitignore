@@ -104,6 +104,8 @@ dist
 .tern-port
 
 .idea
+.hbuilderx
 uniCloud-aliyun/cloudfunctions/smodel
 pages/smodel/components/sfield.js
 pages/smodel/components/smodel_spage.vue
+.DS_Store
