@@ -97,6 +97,8 @@
 				await deleteSmodel(this._id, this.spage, this.form.smodel_choose, this.form.sfield_choose, this.form
 					.menu_choose, this.form.permission_choose, this)
 				this.loading = false
+				uni.$emit('smodel_add_ok',{})
+				this.dialog = false
 			}
 		}
 	};

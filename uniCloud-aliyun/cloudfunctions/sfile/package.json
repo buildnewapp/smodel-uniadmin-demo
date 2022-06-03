@@ -1,8 +1,7 @@
 {
-  "name": "smodel",
+  "name": "sfile",
   "dependencies": {},
   "extensions": {
-	  
     "uni-cloud-jql": {}
   }
 }

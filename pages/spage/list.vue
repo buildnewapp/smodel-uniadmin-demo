@@ -140,6 +140,9 @@
 								v-if="['string','int','text','colorpicker','datepicker','timepicker','slider'].indexOf(col._field.type)>-1">
 								{{ scope.row[col.field] }}
 							</view>
+              <view v-else-if="['datetimepicker'].indexOf(col._field.type)>-1">
+                {{ scope.row[col.field]|time_format}}
+              </view>
 							<el-tag v-else-if="['radio','select'].indexOf(col._field.type)>-1" size="small">
 								{{ col._enums[scope.row[col.field]] }}
 							</el-tag>
@@ -201,9 +204,9 @@
 	import {
 		smodel_log
 	} from '../smodel/config.js'
-	import {
-		build_http_url
-	} from '../smodel/components/sfield.js'
+  import {
+    friendlyDate
+  } from '../smodel/components/date-format.js'
 	import SmodelJson from '../smodel/components/smodel_json.vue'
 	import SpageEditBtn from '../smodel/components/spage_edit_btn.vue'
 
@@ -217,7 +220,7 @@
 		data() {
 			return {
 				sfrom: '', //组件模式,selectone选择器
-				spage: 'sfield',
+				spage: 'deme',
 				smodel: {},
 				loading: true,
 				fieldMap: {},
@@ -243,7 +246,7 @@
 		// 监听 - 页面每次【加载时】执行(如：前进)
 		onLoad(options = {}) {
 			this.init(options);
-			uni.$on(`${this.spage}_add_ok`, () => this.init({}))
+			uni.$on(`${this.spage}_add_ok`, () => this.init({spage:this.spage,...this.form}))
 		},
 		onUnload() {
 			uni.$off(`${this.spage}_add_ok`)
@@ -260,16 +263,14 @@
 			async init(option) {
 				if (option.spage) {
 					this.spage = option.spage
-					this.form = Object.assign({}, option, this.form)
-					await this.initSmodelFields()
-					this.initPageData()
 				}
+				this.form = Object.assign({}, option, this.form)
+				await this.initSmodelFields()
+				this.initPageData()
 			},
 			async initPageData() {
-				this.modelData = await fetchSpageList(this.smodel.collection, this.form, this.fieldMap, this.orderBy,
-					this
-					.currentPage, this.pageSize,
-					this)
+				this.modelData = await fetchSpageList(this.smodel.collection, this.form, this.orderBy,
+					this.currentPage, this.pageSize,this)
 				this.loading = false
 			},
 			async initSmodelFields() {
@@ -281,6 +282,8 @@
 				for (let col of this.girdData) {
 					if (col.type == 'field') {
 						col['_field'] = this.fieldMap[col.field]
+						console.log(col.field, col['_field'], this.fieldMap)
+						console.log(col['_field'].type)
 						col['_enums'] = {}
 						col['_filters'] = []
 						if (['radio', 'select', 'checkbox', 'multiselect'].indexOf(col['_field'].type) > -1) {
@@ -362,7 +365,11 @@
 		// 监听属性
 		watch: {},
 		// 过滤器
-		filters: {},
+		filters: {
+      time_format(v) {
+        return friendlyDate(new Date(v), 'yyyy-MM-dd')
+      }
+    },
 		// 计算属性
 		computed: {},
 		components: {

@@ -122,12 +122,10 @@
 		getFileList,
 		saveSfile,
 		deleteSfile,
-		updateGroup
-	} from '../api/sfile_api.js'
-	import {
+		updateGroup,
 		getSfileGroup,
 		saveSfileGroup
-	} from '../api/sconfig_api.js'
+	} from '../api/sfile_api.js'
 	export default {
 		name: 'SmodelFile',
 		emits: ['input'],
@@ -328,6 +326,7 @@
 					cancelButtonText: '取消'
 				}).then((ret) => {
 					if (ret.value) {
+						console.log(ret.value)
 						this.addTabAction(ret.value)
 					}
 				})

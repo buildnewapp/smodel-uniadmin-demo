@@ -9,6 +9,8 @@
 					JSON模型</el-button>
 				<el-button size="small" icon="el-icon-tickets" @click="viewJsonList('db')"
 					v-else-if="form.type=='json'">数据模型</el-button>
+				<el-button type="danger" size="small" icon="el-icon-lollipop" @click="initSmodelFields" v-if="initFlag">
+					初始化基础数据+测试数据</el-button>
 			</view>
 			<view class="u-flex">
 				<el-input placeholder="搜索模型名称" clearable size="mini" v-model="form.name" class="u-m-r-20"></el-input>
@@ -155,6 +157,7 @@
 		<SmodelQuickmenu ref="quickMenu"></SmodelQuickmenu>
 		<SmodelDelete ref="smodelDelete"></SmodelDelete>
 		<SmodelInOut ref="smodelInOut"></SmodelInOut>
+		<SmodelInit ref="smodelInit"></SmodelInit>
 	</view>
 </template>
 
@@ -164,6 +167,7 @@
 	import SmodelDelete from './components/smodel_delete.vue'
 	import SmodelJson from './components/smodel_json.vue'
 	import SmodelInOut from './components/smodel_inout.vue'
+	import SmodelInit from './components/smodel_init.vue'
 
 
 	import {
@@ -192,6 +196,7 @@
 					total: 0,
 					lists: []
 				},
+				initFlag: false,
 				typeEnums: {
 					db: '数据模型',
 					json: 'JSON模型'
@@ -217,6 +222,9 @@
 		onHide() {},
 		// 函数
 		methods: {
+			initSmodelFields(){
+				this.$refs.smodelInit.show()
+			},
 			viewJsonList() {
 				this.form.type = this.form.type == 'db' ? 'json' : 'db'
 				this.init()
@@ -265,6 +273,7 @@
 			// 页面数据初始化函数
 			async init() {
 				this.modelData = await getSmodelList(this.form.name, this.form.type)
+				this.initFlag = this.modelData.total == 0
 				this.loading = false
 			},
 			handleFieldManage(index, row) {
@@ -317,7 +326,8 @@
 			SmodelSpage,
 			SmodelDelete,
 			SmodelJson,
-			SmodelInOut
+			SmodelInOut,
+			SmodelInit
 		}
 	};
 </script>

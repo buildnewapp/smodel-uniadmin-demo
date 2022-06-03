@@ -74,7 +74,9 @@
 					}
 				} else if (action == 'import') {
 					let json = this.$refs['schemaCode'].innerHTML
-					importSmodel(json, this)
+					await importSmodel(json, this)
+					uni.$emit('smodel_add_ok',{})
+					this.dialog = false
 				}
 			},
 			async exportAction(action) {

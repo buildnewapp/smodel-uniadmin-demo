@@ -103,13 +103,13 @@
 			"bsonType": "int",
 			"label": "新增功能",
 			"description": "0关闭,1新页打开,2弹框打开,3抽屉打开",
-			"defaultValue": true
+			"defaultValue": 1
 		},
 		"editBtn": {
 			"bsonType": "int",
 			"label": "编辑功能",
 			"description": "0关闭,1新页打开,2弹框打开,3抽屉打开",
-			"defaultValue": true
+			"defaultValue": 1
 		},
 		"multBtn": {
 			"bsonType": "bool",

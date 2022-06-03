@@ -9,4 +9,19 @@
 // 详细JQL语法，请参考 https://uniapp.dcloud.net.cn/uniCloud/clientdb?id=jsquery
 
 // 下面示例查询uni-id-users表的所有数据
-db.collection('uni-id-users').get();
+
+
+// db.collection('smodel').where({name:'deme'}).get();
+// db.collection('sfield').where({smodel_id:'627e69c62319ec0001a664a3'}).get();
+
+// const dbCmd = db.command
+// db.collection('sfield').where({smodel_id:dbCmd.in(['628b252a0cb5d500018a52bc','628b2a807a1d270001cce9d9'])}).get();
+
+
+
+// db.collection('smodel').remove()
+// db.collection('sfield').remove()
+// db.collection('uni-id-permissions').where({'permission_id':/smodel/}).remove()
+// db.collection('uni-id-permissions').where({'permission_id':/spage/}).remove()
+// db.collection('opendb-admin-menus').where({'menu_id':/smodel/}).remove()
+// db.collection('opendb-admin-menus').where({'menu_id':/spage/}).remove()
