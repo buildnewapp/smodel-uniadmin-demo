@@ -25,3 +25,4 @@
 // db.collection('uni-id-permissions').where({'permission_id':/spage/}).remove()
 // db.collection('opendb-admin-menus').where({'menu_id':/smodel/}).remove()
 // db.collection('opendb-admin-menus').where({'menu_id':/spage/}).remove()
+// db.collection('deme').remove()

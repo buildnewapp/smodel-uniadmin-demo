@@ -6,11 +6,13 @@ import {
 } from '../config.js'
 
 async function fetchSelectone(option, query, that) {
-	return await spageObj.fetchSelectone(option, query)
+	let res = await spageObj.fetchSelectone(option, query)
+	return res.data
 }
 
 async function fetchSmodelpage(option, query, that) {
-	return await spageObj.fetchSmodelpage(option, query)
+	let res = await spageObj.fetchSmodelpage(option, query)
+	return res.data
 }
 
 async function fetchSpageList(collection, form, orderBy, currentPage, pageSize, that) {

@@ -1,5 +1,10 @@
 <template>
   <view class="smodel">
+    <el-breadcrumb separator-class="el-icon-arrow-right" class="u-p-20">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/pages/'+smodel.name+'/list' }">{{smodel.title}}列表</el-breadcrumb-item>
+      <el-breadcrumb-item>{{ (id ? '编辑 ':'新增 ')}}{{smodel.title}}</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-form ref="form" :model="form" :rules="formRules()" label-width="200rpx" :status-icon="true" size="small"
              :class="smodel.formType + '-form'">
       <el-steps :active="formTab*1" finish-status="success" simple style="margin-top: 20px"
@@ -274,8 +279,8 @@ export default {
       } else {
         addData(this.spage, data).then(res => {
           this.$message.success('新增' + this.smodel.title + '成功')
-          uni.$emit(`${this.spage}_add_ok`, {})
           if (this.showBackBtn) navigateBack(1, 1000)
+		  else uni.$emit(`${this.spage}_add_ok`, {})
         }).catch(err => {
           smodel_log('saveOrUpdate add', err)
           this.$message.error('新增' + this.smodel.title + '失败,' + err)
@@ -391,7 +396,9 @@ export default {
       height: 32px;
     }
 
-    .el-upload {}
+    .el-form-item--small .el-form-item__content, .el-form-item--small .el-form-item__label {
+		line-height: 33px;
+	}
 
     .base-form {
       .el-tabs__header {
@@ -410,17 +417,17 @@ export default {
         display: none;
       }
 
-      .el-tab-pane {
+      .mainsub0,.mainsub1 {
         margin: 10px;
         border: 1px solid #f1f3f4;
         display: inline-block !important;
       }
 
-      .el-tab-pane:nth-child(1) {
+      .mainsub0 {
         width: 65%;
       }
 
-      .el-tab-pane:nth-child(2) {
+      .mainsub1 {
         width: 35%;
       }
 

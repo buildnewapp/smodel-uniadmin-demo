@@ -1,55 +1,6 @@
 <template>
 	<el-dialog title="快速添加菜单" :visible.sync="dialogQuickMenu" width="45%">
 		<el-form ref="form" :model="quickMenuForm" label-width="80px" size="small" v-loading="loading">
-			<el-form-item label="注意事项" v-if="mode=='vk_admin'">
-				vk-admin和uni-admin表结构存在差异，<br>
-				1 下载所有DB Schema <br>
-				2 vk-admin需要添加额外字段：<br>
-				<el-popover placement="bottom" width="400" trigger="hover">
-					<pre :contenteditable="true">
-添加以下代码到 opendb-admin-menus.schema.json:						
-"hidden_menu": {
-	"bsonType": "bool",
-	"label": "隐藏菜单"
-}
-							  </pre>
-					<el-button type="text" slot="reference">opendb-admin-menus</el-button>
-				</el-popover>
-				<el-popover placement="bottom" width="400" trigger="hover" class="u-m-l-20">
-					<pre :contenteditable="true">
-添加以下代码到 uni-id-permissions.schema.json:
-"enable": {
-	"bsonType": "bool",
-	"label": "是否启用"
-},
-"match_mode": {
-	"bsonType": "int",
-	"label": "匹配模式"
-},
-"curd_category": {
-	"bsonType": "int",
-	"label": "权限分类"
-},
-"level": {
-	"bsonType": "int",
-	"label": "权限级别"
-},
-"parent_id": {
-	"bsonType": "string",
-	"label": "父级权限"
-},
-"sort": {
-	"bsonType": "int",
-	"label": "排序"
-},
-"url": {
-	"bsonType": "array",
-	"label": "URL"
-}
-											  </pre>
-					<el-button type="text" slot="reference">uni-id-permissions</el-button>
-				</el-popover>
-			</el-form-item>
 			<el-form-item label="模型标识">
 				<el-input v-model="spage"></el-input>
 			</el-form-item>
@@ -67,7 +18,9 @@
 			<el-form-item label="菜单图标">
 				<el-input v-model="quickMenuForm.icon">
 					<view slot="append">
-						<el-link type="primary" href="/admin/#/pages/demo/icons/icons" target="_blank">icon</el-link>
+						<el-link v-if="mode=='uni_admin'" type="primary" href="/admin/#/pages/demo/icons/icons" target="_blank">icon</el-link>
+						<el-link class="u-m-r-20" v-if="mode=='vk_admin'" type="primary" href="/admin/#/pages_template/components/icons/vk-icons" target="_blank">vk-icon</el-link>
+						<el-link v-if="mode=='vk_admin'" type="primary" href="/admin/#/pages_template/components/icons/element-icons" target="_blank">element-icon</el-link>
 					</view>
 				</el-input>
 			</el-form-item>
@@ -236,7 +189,7 @@
 				this.stitle = row.title
 				if (mode == 'vk_admin') {
 					let permissions = await getAdminPermissions()
-					this.treePermission = buildTree(permissions.result.data, 'parent_id', 'permission_id', 'children')
+					this.treePermission = buildTree(permissions.data, 'parent_id', 'permission_id', 'children')
 				}
 				let menus = await getAdminMenus()
 				this.treeMenu = buildTree(menus.data, 'parent_id', 'menu_id', 'children')

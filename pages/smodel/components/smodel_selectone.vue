@@ -37,13 +37,13 @@
 		},
 		watch: {
 			content(n) {
-				smodel_log('selectone watch content', n)
+				//smodel_log('selectone watch content', n)
 				this.$emit('input', n)
-				this.fetchSelectone(n)
+				this.fetchSelect(n)
 			},
 			value: {
 				handler: function(v, o) {
-					smodel_log('selectone watch value', v, o)
+					//smodel_log('selectone watch value', v, o)
 					if (v != o) {
 						this.content = v
 					}
@@ -72,15 +72,16 @@
 		},
 		computed: {},
 		methods: {
-			async fetchSelectone(query) {
+			async fetchSelect(query) {
 				this.loading = true
 				debounce(async () => {
 					this.options = await fetchSelectone(this.option, query, this)
+					smodel_log('selectone fetchSelectone', query, this.options)
 					this.loading = false
 				}, 1000)
 			},
 			remoteSelectone(query) {
-				this.fetchSelectone(query)
+				this.fetchSelect(query)
 			},
 			visibleChange(visible) {
 				console.log('visibleChange', visible)

@@ -9,7 +9,7 @@
 			<el-form-item label="演示模型">
 				<el-checkbox v-model="form.smodel_test">模型</el-checkbox>
 				<el-checkbox v-model="form.sfield_test">字段数据</el-checkbox>
-				<el-alert title="test表,包含所有字段演示,表格和表单" type="success" :closable="false"></el-alert>
+				<el-alert title="deme表,包含所有字段演示,表格和表单" type="success" :closable="false"></el-alert>
 			</el-form-item>
 			<el-form-item label="后台菜单">
 				<el-checkbox v-model="form.menu_smodel">超级模型</el-checkbox>

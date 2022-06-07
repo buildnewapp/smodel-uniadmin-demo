@@ -40,8 +40,8 @@
 				this.$emit('input', n)
 			},
 			value(n) {
-				smodel_log('SmodelSpage value', n)
 				this.fetchSmodelpage(n)
+				smodel_log('SmodelSpage value', n, this.option, this.chooses)
 			}
 		},
 		components: {
@@ -93,7 +93,6 @@
 				this.$nextTick(() => {
 					this.$refs.spageList.showSelectone(this.option)
 				})
-				
 			},
 			async fetchSmodelpage(query) {
 				this.chooses = await fetchSmodelpage(this.option, query, this)

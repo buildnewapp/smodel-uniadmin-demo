@@ -2,6 +2,8 @@
 const db = uniCloud.database();
 const dbCmd = db.command
 
+const apifun = require('./spage_apifun.js')
+
 function error(errCode, errMsg) {
 	return response(errCode, errMsg)
 }
@@ -79,9 +81,31 @@ module.exports = {
 				getCount: true
 			}).catch(e => {})
 		let count = await db.collection(collection).where(req).count()
+
+		let lists = []
+		for (let i in res.data) {
+			let item = res.data[i]
+			let col = {}
+			for (let j in smodelInfo.smodel.girdData) {
+				let value = ''
+				let gird = smodelInfo.smodel.girdData[j]
+				if (item.hasOwnProperty(gird.field)) {
+					value = item[gird.field]
+				}
+				if (gird.apifun) {
+					value = eval('apifun.'+gird.apifun + '(value, item, gird)')
+				}
+				if (gird.field) {
+					col[gird.field] = value
+				}
+				col['_id'] = item['_id']
+			}
+			lists.push(col)
+		}
+
 		return success({
 			total: count.total,
-			lists: res.data
+			lists: lists
 		})
 	},
 	async fetchSpageData(collection, id) {

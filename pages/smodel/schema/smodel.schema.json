@@ -135,6 +135,12 @@
 			"description": "导入功能是否显示",
 			"defaultValue": false
 		},
+		"pageSize": {
+			"bsonType": "int",
+			"label": "每页数量",
+			"description": "每页数量",
+			"defaultValue": 10
+		},
 		"status": {
 			"bsonType": "int",
 			"enum": [{

@@ -5,7 +5,7 @@
 				<view class="u-cursor-pointer" @click="jsonDataVisible=true">{{title}}</view>
 			</template>
 		</el-input>
-		<el-dialog :title="title" :visible.sync="jsonDataVisible" width="30%">
+		<el-dialog :title="title" :visible.sync="jsonDataVisible" @open="open" width="30%">
 			<el-tabs type="border-card" v-model="activeTab">
 				<el-tab-pane label="JSON" name="ui">
 					<el-alert v-if="fields.length == 0" title="未配置JSON Schema字段" type="warning">
@@ -128,19 +128,20 @@
 				fieldMap: {},
 				fields: [],
 				forms: [{}],
+				inited:false
 			}
 		},
 		mounted() {},
 		watch: {
-			option: {
-				handler: function(v, o) {
-					smodel_log('json watch option', v, o)
-					this.initSmodelFields()
-				},
-				immediate: true
-			},
 			value(n) {
 				smodel_log('json watch value', n)
+				if (n) {
+					if (n instanceof Array) {
+						if (n.length>0) this.forms = n
+					} else {
+						this.forms = [n]
+					}
+				}
 			}
 		},
 		filters: {
@@ -150,13 +151,20 @@
 		},
 		computed: {},
 		methods: {
+			open() {
+				smodel_log('json open', this.option.smodel)
+				if (this.inited) return
+				this.initSmodelFields()
+			},
 			async initSmodelFields() {
 				if (!this.option || !this.option.smodel) return
+				smodel_log('json getSmodelInfo', this.option.smodel)
 				let res = await getSmodelInfo(this.option.smodel)
 				this.smodel = res.smodel
 				this.fields = res.fields
 				this.fieldMap = res.fieldMap
 				this.activeTab = 'ui'
+				this.inited = true
 			},
 			jsonview() {
 				if (this.option.smodel == '') return this.value

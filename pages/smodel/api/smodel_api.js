@@ -89,5 +89,6 @@ export {
 	addSmodelMenu,
 	addSmodel,
 	updateSmodel,
-	initSmodel
+	initSmodel,
+	getAdminPermissions
 }
