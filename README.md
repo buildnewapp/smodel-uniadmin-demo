@@ -1,8 +1,38 @@
 # bna-smodel
 
+### [smodel unicloud dcloud 市场](https://ext.dcloud.net.cn/plugin?id=8356) 
+### [github smodel unicloud](https://github.com/buildnewapp/smodel-unicloud)
+### [smodel-uniadmin-demo unicloud](https://github.com/buildnewapp/smodel-uniadmin-demo)
+
+Smodel-超级模型-UniAdmin低代码模型管理(支持uniadmin+vkadmin)
+
+bna-smodel
+
+通过界面配置管理后台增删改查功能，支持unicloud，支持26种常见类型
+
+smodel,超级模型,低代码,模型管理
 # 一 安装运行
 
-## 1 安装依赖
+## 1 安装插件
+- 本插件是[Uni Admin](https://uniapp.dcloud.io/uniCloud/admin.html)扩展功能
+- 先安装[Uni Admin](https://uniapp.dcloud.io/uniCloud/admin.html)或[VK Admin](https://ext.dcloud.net.cn/plugin?id=5043)
+- [smodel unicloud dcloud 市场](https://ext.dcloud.net.cn/plugin?id=8356)实用Hbuilder X导入插件
+- 或者[github smodel unicloud](https://github.com/buildnewapp/smodel-unicloud)源码安装，源码目录：doc/bna-smodel
+```
+pages --拷贝到项目pages目录
+	smodel
+	spage
+uniCloud-aliyun
+	cloudfunctions --拷贝到项目cloudfunctions目录
+		smodel
+		spage
+		sfile
+menu.json
+package.json
+pages.json --合并项目pages.json文件
+```
+
+## 2 安装依赖
 进入项目，命令行安装前端npm依赖
 ```
 npm i element-ui -s
@@ -14,23 +44,26 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 ```
 
-## 2 安装数据库+云函数
- - 1) uniCloud > database 右键：上传所有 DB Schema（主要表：smodel、sfield、sfile、sconfig、deme、test）
- - 2) uniCloud > database > smodel_db_init.json 初始化云数据库
- - 3) uniCloud > cloudfunctions 上传Smodel云函数
+## 3 安装云对象
+ - 1) uniCloud > cloudfunctions 上传所有云函数：
  
- | 表明 | 功能 | 是否必须 | 说明 |
+ | 数据表明 | 功能 | 是否必须 | 说明 |
  | --- | --- | --- | --- |
  | smodel | 模型表 | 必须 | 核心表，记录模型记录和配置|
  | sfield | 模型字段表 | 必须 |核心表，记录模型字段和字段配置 |
  | sfile | 文件记录表 | 否 |插件表，文件管理器，记录上传文件信息|
  | sconfig | 通用配置表 | 否 |插件表，所有插件配置记录，k-v|
 
+ |  云对象 | 功能 | 是否必须 | 说明 |
+ | --- | --- | --- | --- |
+ | smodel | 超级模型 | 必须 | 核心云对象，模型CRUD等功能|
+ | spage | 数据模型 | 必须 | 核心云对象，数据CRUD等功能 |
+ | sfile | 文件模型 | 否 |文件管理云对象|
 
 
-## 3 添加页面配置和菜单
-正常情况，页面配置可以自动合并到项目；菜单需要手动添加；
-- 1) 添加页面到pages.json，配置项：
+## 4 添加页面配置和菜单
+正常情况，页面配置可以自动合并到项目pages.json，如果确实手动添加即可：
+- 1) 手动添加页面到pages.json，配置项：
 ```
 {
   "path": "pages/smodel/list",
@@ -63,22 +96,12 @@ Vue.use(ElementUI);
   }
 }
 ```
-- 2) 手动添加菜单，系统配置>菜单管理>新增一级菜单 ：
-```
-	{
-		"menu_id": "smodel",
-		"name": "超级模型",
-		"icon": "uni-icons-list",
-		"url": "/pages/smodel/list",
-		"sort": 100,
-		"permission": []
-	}
-```
 
-## 4 运行项目
-插件安装成功会添加 模型管理 顶级菜单
+## 5 初始化数据
+访问页面：/pages/smodel/list，如果第一次进入，点击：初始化基础数据+测试数据：
+![初始化基础数据+测试数据](https://static-c06967d5-acd2-4fa0-b35f-29ec612ce5cc.bspapp.com/screenshot/smodel_init.png)
 
-## 5 演示地址
+## 6 演示地址
 
 [演示地址](https://static-c06967d5-acd2-4fa0-b35f-29ec612ce5cc.bspapp.com/admin/#/pages/smodel/list)
 
@@ -92,8 +115,7 @@ https://static-c06967d5-acd2-4fa0-b35f-29ec612ce5cc.bspapp.com/admin/
 ## 1 模型使用流程
 - 1) 添加数据表：添加->输入模型标识+名称
 - 2) 添加表字段：操作->字段，添加功能，模型中需要有status、create_time字段，完善所有表字段
-- 3) 创建表结构：数据->部署，下载数据库文件 xxx.schema.json，拷贝到uniCloud/database目录，上传DB Schema
-- 4) 访问页面：2种模式（参数访问模式、单页访问模式），参考部署配置项目
+- 3) 访问页面：2种模式（参数访问模式、单页访问模式），参考部署配置项目
 
 ## 2 模型使用流程
 ### CRUD
