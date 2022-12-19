@@ -1,5 +1,5 @@
 <template>
-	<el-dialog title="初始化模型和字段数据" :visible.sync="dialog" width="30%">
+	<el-dialog title="初始化模型和字段数据" :visible.sync="dialog" width="600px">
 		<el-form ref="form" :model="form" label-width="80px" size="small" v-loading="loading">
 			<el-form-item label="字段模型">
 				<el-checkbox v-model="form.smodel_sfield" disabled>模型</el-checkbox>

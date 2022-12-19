@@ -234,7 +234,8 @@ module.exports = {
 					`{"permission": ["smodel_list","smodel_add","smodel_edit"],"enable": true,"menu_id": "smodel","name": "超级模型","icon": "uni-icons-navigate","url": "/pages/smodel/list","sort": 2000,"parent_id": "","create_date": 1654180339522}`
 				menus.push(JSON.parse(menu_smodel))
 			} else if (mode == 'vk_admin') {
-
+				let menu_smodel = `[{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f01","enable": true,"icon": "el-icon-monitor","menu_id": "smodel","name": "超级模型","sort": 80},{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f03","enable": true,"hidden_menu": true,"icon": "el-icon-plus","menu_id": "smodel-add","name": "新增模型","parent_id": "smodel-list","sort": 0,"url": "/pages/smodel/add"},{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f04","enable": true,"hidden_menu": true,"icon": "el-icon-minus","menu_id": "smodel-edit","name": "编辑模型","parent_id": "smodel-list","sort": 0,"url": "/pages/smodel/edit"},{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f02","enable": true,"icon": "el-icon-notebook-1","menu_id": "smodel-list","name": "超级模型","parent_id": "smodel","sort": 0,"url": "/pages/smodel/list"}]`
+				menus.push(...JSON.parse(menu_smodel))
 			}
 		}
 		if (option.menu_spage) {
@@ -243,7 +244,8 @@ module.exports = {
 					`{"permission": ["spage_list","spage_add","spage_edit","spage_del","spage_selectone"],"enable": true,"menu_id": "spage","name": "模型数据","icon": "uni-icons-star","url": "/pages/spage/list","sort": 2050,"parent_id": "","create_date": 1654180411016}`
 				menus.push(JSON.parse(menu_spage))
 			} else if (mode == 'vk_admin') {
-
+				let menu_spage =`[{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f06","enable": true,"hidden_menu": true,"icon": "el-icon-document-add","menu_id": "spage-add","name": "新增数据","parent_id": "spage-list","sort": 0,"url": "/pages/spage/add"},{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f07","enable": true,"hidden_menu": true,"icon": "el-icon-document","menu_id": "spage-edit","name": "编辑数据","parent_id": "spage-list","sort": 0,"url": "/pages/spage/edit"},{"_add_time": 1653984115654,"_add_time_str": "2022-05-31 16:01:55","_id": "6295cb73d5771c0001cb0f05","enable": true,"icon": "el-icon-notebook-2","menu_id": "spage-list","name": "数据列表","parent_id": "smodel","sort": 2,"url": "/pages/spage/list"}]`
+				menus.push(...JSON.parse(menu_spage))
 			}
 		}
 		if (option.permission_smodel) {
@@ -252,7 +254,9 @@ module.exports = {
 					`[{"_id": "6298cb63c98815000192fb61","comment": "初始化","create_date": 1652690761045,"permission_id": "smodel_add","permission_name": "超级模型添加"},{"_id": "6298cb775c1f6c00018e3e6e","comment": "初始化","create_date": 1652690761045,"permission_id": "smodel_edit","permission_name": "超级模型编辑"},{"_id": "6298cb4bd5771c0001171675","comment": "初始化","create_date": 1652690761045,"permission_id": "smodel_list","permission_name": "超级模型管理"}]`
 				permissions.push(...JSON.parse(permission_smodel))
 			} else if (mode == 'vk_admin') {
-
+				let permission_smodel =
+					`[{"_add_time": 1654241726990,"_add_time_str": "2022-06-03 15:35:26","_id": "6299b9bfc2cedc0001d0edf2","curd_category": 4,"enable": true,"level": 3,"match_mode": 0,"permission_id": "smodel","permission_name": "超级模型","sort": 0,"url": ["smodel"]},{"_add_time": 1654241777249,"_add_time_str": "2022-06-03 15:36:17","_id": "6299b9f1f6d1400001acd3ee","curd_category": 1,"enable": true,"level": 3,"match_mode": 0,"parent_id": "smodel","permission_id": "smodel-add","permission_name": "模型添加","sort": 0,"url": ["smodel/addSmodel"]},{"_add_time": 1654241860254,"_add_time_str": "2022-06-03 15:37:40","_id": "6299ba441341c70001023e5d","curd_category": 2,"enable": true,"level": 3,"match_mode": 0,"parent_id": "smodel","permission_id": "smodel-deleteSmodel","permission_name": "删除模型","sort": 0,"url": ["smodel/deleteSmodel"]},{"_add_time": 1654241805149,"_add_time_str": "2022-06-03 15:36:45","_id": "6299ba0d69276900014c06dd","curd_category": 3,"enable": true,"level": 4,"match_mode": 0,"parent_id": "smodel","permission_id": "smodel-edit","permission_name": "编辑模型","sort": 0,"url": ["smodel/update"]}]`
+				permissions.push(...JSON.parse(permission_smodel))
 			}
 		}
 		if (option.permission_spage) {
@@ -261,7 +265,9 @@ module.exports = {
 					`[{"_id": "62820f492f77c400014d3dc0","comment": "初始化","create_date": 1652690761354,"permission_id": "spage_add","permission_name": "数据模型新增"},{"_id": "62820f4a996ab20001420382","comment": "初始化","create_date": 1652690762067,"permission_id": "spage_del","permission_name": "数据模型删除"},{"_id": "62820f4997ade30001530a8d","comment": "初始化","create_date": 1652690761764,"permission_id": "spage_edit","permission_name": "数据模型编辑"},{"_id": "62820f495e068d00017f8ff5","comment": "初始化","create_date": 1652690761045,"permission_id": "spage_list","permission_name": "数据模型管理"},{"_id": "62820f4a5e068d00017f9023","comment": "初始化","create_date": 1652690762338,"permission_id": "spage_selectone","permission_name": "数据模型选择器"}]`
 				permissions.push(...JSON.parse(permission_spage))
 			} else if (mode == 'vk_admin') {
-
+				let permission_spage =
+					`[{"_add_time": 1654241885574,"_add_time_str": "2022-06-03 15:38:05","_id": "6299ba5dfd3e3200011044c4","curd_category": 4,"enable": true,"level": 4,"match_mode": 0,"permission_id": "spage","permission_name": "数据模型","sort": 0,"url": ["spage"]},{"_add_time": 1654241914816,"_add_time_str": "2022-06-03 15:38:34","_id": "6299ba7b257bc80001679b7d","curd_category": 1,"enable": true,"level": 3,"match_mode": 0,"parent_id": "spage","permission_id": "spage-add","permission_name": "添加数据","sort": 0,"url": ["spage/addData"]},{"_add_time": 1654241970901,"_add_time_str": "2022-06-03 15:39:30","_id": "6299bab37ab3bd0001ef5b09","curd_category": 2,"enable": true,"level": 3,"match_mode": 0,"parent_id": "spage","permission_id": "spage-delete","permission_name": "删除数据","sort": 0,"url": ["spage/deleteData"]},{"_add_time": 1654241939895,"_add_time_str": "2022-06-03 15:38:59","_id": "6299ba94302d9f00011a5c3b","curd_category": 3,"enable": true,"level": 3,"match_mode": 0,"parent_id": "spage","permission_id": "spage-edit","permission_name": "编辑数据","sort": 0,"url": ["spage/updateData"]}]`
+				permissions.push(...JSON.parse(permission_spage))
 			}
 		}
 		console.log(smodels, sfields, menus, permissions)

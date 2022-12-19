@@ -1,0 +1,18 @@
+{
+  "name": "resetTest",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  },
+  "cloudfunction-config": {
+    "concurrency": 1,
+    "memorySize": 256,
+    "path": "",
+    "timeout": 60,
+    "triggers": [{
+      "config": "0 0 0 * * * *",
+      "name": "resetTest",
+      "type": "timer"
+    }]
+  }
+}

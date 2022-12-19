@@ -11,6 +11,7 @@
 					v-else-if="form.type=='json'">数据模型</el-button>
 				<el-button type="danger" size="small" icon="el-icon-lollipop" @click="initSmodelFields" v-if="initFlag">
 					初始化基础数据+测试数据</el-button>
+        <el-button type="danger" size="small" icon="el-icon-lollipop" @click="deleteSmodelData" v-if="dangerFlag">清空数据</el-button>
 			</view>
 			<view class="u-flex">
 				<el-input placeholder="搜索模型名称" clearable size="mini" v-model="form.name" class="u-m-r-20"></el-input>
@@ -178,6 +179,7 @@
 	} from './config.js'
 	import {
 		getSmodelList,
+    destroySmodelData,
 		copySmodel
 	} from './api/smodel_api.js'
 
@@ -197,6 +199,7 @@
 					lists: []
 				},
 				initFlag: false,
+        dangerFlag: true,
 				typeEnums: {
 					db: '数据模型',
 					json: 'JSON模型'
@@ -222,6 +225,28 @@
 		onHide() {},
 		// 函数
 		methods: {
+      deleteSmodelData(){
+        this.$prompt('请输入smodel确定清空数据，删除smodel、sfield、menus、permissions，不可恢复；正式环境删除resetTest函数。', '清空数据警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputValue: '',
+          inputErrorMessage: '输入内容必须'
+        }).then((ret) => {
+          if (ret.value === 'smodel') {
+            uniCloud.callFunction({
+              name: 'resetTest',
+              data: {}
+            }).then(res => {
+              this.$message.info(res.result.msg);
+              console.log('resetTest', res)
+            });
+          } else {
+            this.$message.info('取消操作');
+          }
+        }).catch(() => {
+          this.$message.info('取消输入');
+        });
+      },
 			initSmodelFields(){
 				this.$refs.smodelInit.show()
 			},
